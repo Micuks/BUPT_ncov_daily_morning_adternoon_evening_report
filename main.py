@@ -5,10 +5,9 @@ import os
 LOGIN_URL = "https://app.bupt.edu.cn/uc/wap/login/check"
 GET_URL = 'https://app.bupt.edu.cn/xisuncov/wap/open-report/index'
 POST_URL = 'https://app.bupt.edu.cn/xisuncov/wap/open-report/save'
-__uname = os.environ['USERNAME']
-__upswd = os.environ['PASSWORD']
+__uname = os.environ['BUPT_USERNAME']
+__upswd = os.environ['BUPT_PASSWORD']
 
-#FormData = json.load(open("./form.json", 'r'))
 FormData = []
 
 Connection = requests.session()
@@ -22,7 +21,7 @@ if Result.status_code != 200:
     print("Failed to login. Check your username and password.", Result.status_code)
     exit()
 else:
-    print("LOGIN BIG SUCCESS")
+    print("Successfully logged in.")
 
 #Get
 Result = Connection.post(
@@ -30,7 +29,7 @@ Result = Connection.post(
 )
 if Result.status_code != 200:
     print("Failed to get form data.", Result.status_code)
-    print("Use default form data instead.")
+    exit()
 else:
     with open("last_get.json", "w") as fp:
         fp.write(Result.text)

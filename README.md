@@ -6,10 +6,10 @@
 
 2.在 `Settings/Secrets/Actions` 中点击 `New repository secret` 来创建以下`Actions Secrets`:
 
-- `USERNAME`: 你的学号
-- `PASSWORD`: 你的密码
+- `BUPT_USERNAME`: 你的学号
+- `BUPT_PASSWORD`: 你的密码
 
-之后,`Github Actions`会自动在北京时间8点, 12点和18点填报.
+之后,`Github Actions`会自动在北京时间8点, 12点和18点填报. 如果填报失败,Github将向你的邮箱发送一封邮件.
 
 如果你想手动运行,可以进入`Actions`栏,点击`Re-run Jobs`来重新运行,或者执行一次`git push`操作.
 

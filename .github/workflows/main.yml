@@ -41,11 +41,5 @@ jobs:
       - name: Run main.py
         run: python3 main.py
         env:
-          USERNAME: ${{secrets.USERNAME}}
-          PASSWORD: ${{secrets.PASSWORD}}
-
-      # Runs a set of commands using the runners shell
-      - name: Left github documentation
-        run: |
-          echo Autorun finished.
-          echo Checking results from time to time is recommended.
+          BUPT_USERNAME: ${{secrets.BUPT_USERNAME}}
+          BUPT_PASSWORD: ${{secrets.BUPT_PASSWORD}}
