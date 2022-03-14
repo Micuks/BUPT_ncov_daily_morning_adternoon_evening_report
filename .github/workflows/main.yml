@@ -23,28 +23,24 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Check code.
         uses: actions/checkout@v2
-      
+
+      # Setup python3
       - name: Use python 3.x
         uses: actions/setup-python@v3.0.0
         with:
           python-version: 3.x
-          #cache: pip
+          cache: pip
+
+      # Install requests
+      - name: Install requests
+        run: pip install --upgrade requests
+
       # Runs a single command using the runners shell
       - name: Run main.py
         run: python3 main.py
-        
-      # Upgrade requests package
-      - name: Upgrade pip and requests
-        run: 
-          pip install --upgrade requests
-      
-      # Begin dailyup
-      - name: Run daily submit
-        run:
-          python3 main.py
 
       # Runs a set of commands using the runners shell
       - name: Left github documentation
         run: |
-          echo Autorun finished. 
+          echo Autorun finished.
           echo Checking results from time to time is recommended.
