@@ -1,0 +1,50 @@
+# This is a basic workflow to help you get started with Actions
+
+name: ncov_dailyup_autorun
+
+# Controls when the workflow will run
+on:
+  schedule:
+   - cron: "2/8 0 * * *"
+   - cron: "2/8 4 * * *"
+   - cron: "2/8 10 * * *"
+  # Triggers the workflow on push
+  push:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Check code.
+        uses: actions/checkout@v2
+      
+      - name: Use python 3.x
+        uses: actions/setup-python@v3.0.0
+        with:
+          python-version: 3.x
+          cache: pip
+      # Runs a single command using the runners shell
+      - name: Run main.py
+        run: python3 main.py
+        
+      # Upgrade requests package
+      - name: Upgrade pip and requests
+        run: 
+          pip install --upgrade requests
+      
+      # Begin dailyup
+      - name: Run daily submit
+        run:
+          python3 main.py
+
+      # Runs a set of commands using the runners shell
+      - name: Left github documentation
+        run: |
+          echo Autorun finished. 
+          echo Checking results from time to time is recommended.
