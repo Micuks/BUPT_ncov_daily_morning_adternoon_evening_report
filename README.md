@@ -6,8 +6,8 @@
 
 2.在 `Settings/Secrets/Actions` 中点击 `New repository secret` 来创建以下`Actions Secrets`:
 
-	- `USERNAME`: 你的学号
-	- `PASSWORD`: 你的密码
+- `USERNAME`: 你的学号
+- `PASSWORD`: 你的密码
 
 之后,`Github Actions`会自动在北京时间8点, 12点和18点填报.
 
