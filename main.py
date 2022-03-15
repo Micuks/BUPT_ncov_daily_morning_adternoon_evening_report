@@ -1,8 +1,4 @@
-import requests
-import json
-import os
-import re
-import form
+import requests, json, os, re, form
 
 LOGIN_URL = "https://app.bupt.edu.cn/uc/wap/login/check"
 GET_URL = 'https://app.bupt.edu.cn/xisuncov/wap/open-report/index'
@@ -35,11 +31,10 @@ if Response.status_code != 200:
     exit()
 else:
     OldForm = re.search(r'oldInfo: \{.+\}', Response.text)
-    OldForm = json.loads(OldForm.group().split(': ')[1])
+    OldForm = json.loads(OldForm[0].split(': ')[1])
     for key in FormData:
         if key in OldForm:
             FormData[key] = OldForm[key]
-    #print(json.dumps(FormData, indent=4))
 
 #Get
 Response = Connection.post(
@@ -51,7 +46,6 @@ if Response.status_code != 200:
 else:
     NewFormData = json.loads(Response.text)
     NewFormData = NewFormData['d']['info']
-    #print(json.dumps(NewFormData, indent=4))
     for key in FormData:
         if FormData[key] == "" and key in NewFormData:
             FormData[key] = NewFormData[key]
@@ -60,7 +54,6 @@ else:
 
     if FormData['province'] in ['北京市', '天津市', '上海市', '重庆市']:
         FormData['city'] = FormData['province']
-    #print(json.dumps(FormData, indent=4))
     if(FormData['geo_api_info'] == ''):
         print("昨日填报信息为空.请先手动填报一次.")
         exit()

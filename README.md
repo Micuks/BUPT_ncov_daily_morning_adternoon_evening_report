@@ -1,4 +1,12 @@
 # BUPT每日填报晨午晚检
+<p align="center">
+  <a href="">
+    <img src=""
+  <a href="https://github.com/Micuks/BUPT_ncov_daily_morning_adternoon_evening_report/blob/main/.github/workflows/main.yml">
+    <img src="https://img.shields.io/github/workflow/status/Micuks/BUPT_ncov_daily_morning_adternoon_evening_report/ncov_dailyup_autorun" alt="Github Actions">
+  </a>
+</p>
+
 
 ## 使用方法
 
@@ -27,3 +35,11 @@ on:
     - cron: "2/8 10 * * *"
 ```
 时间格式为cron格式,如`"2/8 0 * * *"`意为每天的北京时间8点2分开始,每隔8分钟尝试填报一次,直到北京时间8点58分,共尝试8次.
+
+## Credit
+
+- 受到了 [imtsuki/bupt-ncov-report-action](https://github.com/imtsuki/bupt-ncov-report-action) 的启发.
+
+## License
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
