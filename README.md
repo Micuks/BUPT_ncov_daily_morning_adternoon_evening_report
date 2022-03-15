@@ -1,9 +1,11 @@
 # BUPT每日填报晨午晚检
 <p align="center">
-  <a href="">
-    <img src=""
-  <a href="https://github.com/Micuks/BUPT_ncov_daily_morning_adternoon_evening_report/blob/main/.github/workflows/main.yml">
-    <img src="https://img.shields.io/github/workflow/status/Micuks/BUPT_ncov_daily_morning_adternoon_evening_report/ncov_dailyup_autorun" alt="Github Actions">
+  <a href="https://www.python.org/">
+    <img src="https://img.shields.io/github/pipenv/locked/python-version/Micuks/BUPT_ncov_daily_morning_afternoon_evening_report">
+  </a>
+
+  <a href="https://github.com/psf/requests">
+  <img src="https://img.shields.io/github/pipenv/locked/dependency-version/Micuks/BUPT_ncov_daily_morning_afternoon_evening_report/requests">
   </a>
 </p>
 
