@@ -31,10 +31,9 @@ jobs:
           python-version: 3.8
 
       # Install requests
-      #- name: Install requests
-        #run: |
-          #pip install --upgrade pip
-          #pip install --upgrade requests
+      - name: Install requests
+        run: 
+          pip install --upgrade requests
 
       # Runs a single command using the runners shell
       - name: Run main.py
