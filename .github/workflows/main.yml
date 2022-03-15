@@ -27,8 +27,8 @@ jobs:
       # Setup python3
       - name: Install python, pipenv and Pipfile packages
         uses: palewire/install-python-pipenv-pipfile@v2
-        #with:
-          #python-version: 3.8
+        with:
+          python-version: 3.8
 
       # Install requests
       - name: Install requests
