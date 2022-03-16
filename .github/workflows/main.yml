@@ -5,9 +5,9 @@ name: ncov_dailyup_autorun
 # Controls when the workflow will run
 on:
   schedule:
-   - cron: "2/8 0 * * *"
-   - cron: "2/8 4 * * *"
-   - cron: "2/8 10 * * *"
+   - cron: "2/10 22 * * *"
+   - cron: "2/10 4 * * *"
+   - cron: "2/10 10 * * *"
   # Triggers the workflow on push
   push:
 
