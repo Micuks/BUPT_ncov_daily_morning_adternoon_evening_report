@@ -67,7 +67,8 @@ if Response.status_code != 200:
     print("Failed to submit.", Response.status_code)
     exit()
 else: 
-    print(json.dumps(FormData, indent=4))
+    # 如果想查看自己的位置信息等,请去掉71行注释符号
+    # print(json.dumps(FormData, indent=4))
     ResponseMessage = json.loads(Response.text)
     if ResponseMessage['m'] == '操作成功':
         print("Successfully submitted.", ResponseMessage['m'])
