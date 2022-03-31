@@ -1,9 +1,12 @@
 import requests, json, os, re, form
+from time import sleep
+from random import randint
 
 LOGIN_URL = "https://app.bupt.edu.cn/uc/wap/login/check"
 GET_URL = 'https://app.bupt.edu.cn/xisuncov/wap/open-report/index'
 OLDFORM_URL = 'https://app.bupt.edu.cn/ncov/wap/default/index'
 POST_URL = 'https://app.bupt.edu.cn/xisuncov/wap/open-report/save'
+__timeout = 3.0
 __uname = os.environ['BUPT_USERNAME']
 __upswd = os.environ['BUPT_PASSWORD']
 
@@ -14,24 +17,39 @@ Connection = requests.session()
 #Login
 Response = Connection.post(
     url = LOGIN_URL,
-    data = {'username': __uname, 'password': __upswd}
+    data = {'username': __uname, 'password': __upswd},
+    timeout = __timeout
 )
 if Response.status_code != 200:
     print("Failed to login. Check your username and password.", Response.status_code)
     exit()
 else:
     print("Successfully logged in.")
+    print(Response.text)
 
 #OldForm
 Response = Connection.post(
-    url = OLDFORM_URL
+    url = "https://app.bupt.edu.cn/a_bupt/api/sso/cas?redirect=https%3A%2F%2Fapp.bupt.edu.cn%2Fncov%2Fwap%2Fdefault%2Findex&from=wap",
+    allow_redirects=True
 )
+sleep(randint(1000, 2000)/1000)
+
 if Response.status_code != 200:
     print("Failed to get old form data.", Response.status_code)
     exit()
 else:
+    if Response.history:
+        print(Response.history)
+        for item in Response.history:
+            print(item.status_code, item.url)
+        print("End of urls.")
+        print(Response.history[0].text)
     OldForm = re.search(r'oldInfo: \{.+\}', Response.text)
-    OldForm = json.loads(OldForm[0].split(': ')[1])
+    if OldForm is not None:
+        OldForm = json.loads(OldForm.group(0).split(': ')[1])
+    else:
+        print("Failed to get old submit context.")
+        exit()
     for key in FormData:
         if key in OldForm:
             FormData[key] = OldForm[key]
